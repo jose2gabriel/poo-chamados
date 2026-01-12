@@ -5,11 +5,17 @@ import { MemoryCallRepository } from "./modelo/memoryCallRepository";
 import { ICallUI } from "./ui/iCallUI";
 import { TextCallUI } from "./ui/TextCallUI";
 
-let callRepository : ICallRepository;
+// Instancia o repositório em memória
+let callRepository: ICallRepository;
 callRepository = new MemoryCallRepository();
 
-let callController : ICallController;
+// Instancia o controlador com o repositório
+let callController: ICallController;
 callController = new CallController(callRepository);
 
-let ui : ICallUI;
+// Instancia a interface de usuário
+let ui: ICallUI;
 ui = new TextCallUI(callController);
+
+// Inicia o sistema
+ui.start();

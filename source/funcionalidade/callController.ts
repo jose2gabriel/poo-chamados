@@ -6,27 +6,26 @@ import { ICallController } from "./iCallController";
  * Controlador responsável pelas regras de negócio dos Chamados.
  * Interage com o repositório para criar, listar e marcar chamados como atendidos.
  */
-export class CallController implements ICallController{
-    
-    callRepository : ICallRepository;
+export class CallController implements ICallController {
+
+    private callRepository: ICallRepository;
 
     /**
      * Inicializa o controlador com uma implementação de repositório.
      * @param callRepository repositório a ser utilizado para persistência
      */
-    constructor(callRepository : ICallRepository){
+    constructor(callRepository: ICallRepository) {
         this.callRepository = callRepository;
     }
-    
+
     /**
-     * Abre um novo chamado com status inicial pendente.
+     * Abre um novo chamado com status inicial pendente (false).
      * @param nome nome do solicitante
      * @param descricao descrição do problema reportado
      * @returns true se o repositório persistir com sucesso, caso contrário false
      */
     abrirChamado(nome: string, descricao: string): boolean {
-        let novoChamado : Chamado;
-        novoChamado = new Chamado(false,nome,descricao);
+        const novoChamado = new Chamado(false, nome, descricao);
         return this.callRepository.criarNovoChamado(novoChamado);
     }
 
@@ -34,7 +33,7 @@ export class CallController implements ICallController{
      * Lista todos os chamados presentes no repositório.
      * @returns lista de chamados
      */
-    listarChamado(): Array<Chamado> {
+    listarChamados(): Array<Chamado> {
         return this.callRepository.listarChamados();
     }
 
@@ -47,5 +46,4 @@ export class CallController implements ICallController{
         chamado.setStatus(true);
         return this.callRepository.atualizarChamado(chamado);
     }
-
 }

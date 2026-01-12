@@ -2,9 +2,11 @@
  * Interface para componentes de interface de usuário do sistema de chamados.
  * Implementações podem ser baseadas em terminal, web, etc.
  */
-export interface ICallUI{
+export interface ICallUI {
+
     /**
-     * Este método inicia a interface de usuário preparando para a interação e execução das funções do sistema por parte do usuário.
+     * Inicia a interface de usuário e permite a interação com o sistema.
      */
-    start():void;
+    start(): void;
+
 }
